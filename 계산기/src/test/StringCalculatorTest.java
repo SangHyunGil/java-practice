@@ -10,17 +10,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class StringCalculatorTest {
 
-    @DisplayName("빈 입력은 실패한다.")
-    @ParameterizedTest
-    @ValueSource(strings = {"", " "})
-    public void calc_fail(String expression) throws Exception {
-        //given
-
-        //when, then
-        Assertions.assertThrows(IllegalArgumentException.class, ()->StringCalculator.calculateResult(expression));
-
-    }
-
     @DisplayName("계산식에 대한 올바른 계산을 진행한다.")
     @ParameterizedTest
     @CsvSource(value = {
