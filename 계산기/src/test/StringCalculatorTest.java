@@ -1,12 +1,17 @@
 package test;
 
 import main.domain.StringCalculator;
+import main.exception.ExceptionMessage;
+import main.util.StringUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StringCalculatorTest {
 
@@ -25,7 +30,7 @@ public class StringCalculatorTest {
         int ActualResult = StringCalculator.calculateResult(expression);
 
         //then
-        Assertions.assertEquals(result, ActualResult);
+        assertEquals(result, ActualResult);
     }
 
     @DisplayName("올바르지 못한 계산식은 실패한다.")
@@ -39,7 +44,10 @@ public class StringCalculatorTest {
     public void calc_fail2(String expression, int result) throws Exception {
         //given
 
-        //when, then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> StringCalculator.calculateResult(expression));
+        //when
+        Throwable exception = assertThrows(IllegalArgumentException.class, ()-> StringCalculator.calculateResult(expression));
+
+        //then
+        assertEquals(ExceptionMessage.HAS_NO_PROPER_OPERATOR, exception.getMessage());
     }
 }

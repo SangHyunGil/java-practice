@@ -1,7 +1,6 @@
 package main.domain;
 
 import main.exception.ExceptionMessage;
-
 import java.util.Arrays;
 import java.util.function.BiFunction;
 
