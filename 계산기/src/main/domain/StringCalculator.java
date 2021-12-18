@@ -5,7 +5,6 @@ import main.util.StringUtil;
 
 public class StringCalculator {
     public static int calculateResult(String expression) {
-        validateInput(expression);
         String[] splitResult = StringUtil.split(expression);
         int result = calculate(splitResult);
         return result;
@@ -17,14 +16,5 @@ public class StringCalculator {
             result = Operator.calculate(result, splitResult[i], StringUtil.toInt(splitResult[i+1]));
         }
         return result;
-    }
-
-    private static void validateInput(String expression) {
-        if (hasNoInput(expression))
-            throw new IllegalArgumentException(ExceptionMessage.EXPRESSION_BLANK);
-    }
-
-    private static boolean hasNoInput(String expression) {
-        return expression.trim().isEmpty();
     }
 }
